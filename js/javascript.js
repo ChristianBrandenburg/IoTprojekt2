@@ -1,12 +1,14 @@
-var device_id = "DE:4B:7D:E6:AD:65";
-ble.autoConnect(device_id, connectCallback, disconnectCallback);
+function conn() {
+    var device_id = "DE:4B:7D:E6:AD:65";
+    ble.connect(device_id, connectCallback, disconnectCallback);
+}
 
 function checkInd() {
-  messageInput.value = "Tjek ind";
+  messageInput.value = "Mød ind";
 }
 
 function checkUd() {
-  messageInput.value = "Tjek ud";
+  messageInput.value = "Mød ud";
 }
 
 function sendData() { // send data to Arduino
