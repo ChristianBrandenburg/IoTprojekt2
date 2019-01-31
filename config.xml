@@ -1,18 +1,24 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget
-	id="dk.kea.bluefruit-2"
-	version="0.0.2"
+	id="dk.kea.bluefruit-gruppeX"
+	version="0.0.3"
 	xmlns="http://www.w3.org/ns/widgets"
 	xmlns:cdv="http://cordova.apache.org/ns/1.0">
 
-    <name>Bluifruit-2</name>
+    <name>SesamApp</name>
     <description>
-        A sample app from a phone  BLE hardware.
+        Gruppe X app til IoT projekt 2.
     </description>
     <author >
-         Lone Østerlund based on an example by Don Coleman:
-		 https://github.com/don/cordova-plugin-ble-central
-		 revideret til IoS af Rico Ghanem
+				Christian Brandenburg
+				Rasmus Harder
+				Nis Peter Wendtland Henriksen
+				Kasper Krøier
+
+				Orginal kode er givet fra:
+        Lone Østerlund based on an example by Don Coleman:
+		 	 	https://github.com/don/cordova-plugin-ble-central
+		 		revideret til IoS af Rico Ghanem
     </author>
 
     <content src="index.html" />
