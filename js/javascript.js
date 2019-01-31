@@ -1,5 +1,5 @@
 function conn() {
-    var device_id = "DE:4B:7D:E6:AD:65";
+    var device_id = DE:4B:7D:E6:AD:65;
     ble.connect(device_id, connectCallback, disconnectCallback);
 }
 
