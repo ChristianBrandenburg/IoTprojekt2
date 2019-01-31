@@ -20,6 +20,7 @@
 #define FACTORYRESET_ENABLE         0
 #define MINIMUM_FIRMWARE_VERSION    "0.6.6"
 #define MODE_LED_BEHAVIOUR          "MODE"
+
 /*=========================================================================*/
 
 
@@ -36,7 +37,12 @@ void error(const __FlashStringHelper*err) {
   Serial.println(err);
   while (1);
 }
+int pos = 0; 
+#include <Servo.h>
 
+Servo myservo;  // create servo object to control a servo
+// twelve servo objects can be created on most boards
+ 
 /**************************************************************************/
 /*!
     @brief  Sets up the HW an the BLE module (this function is called
@@ -45,6 +51,11 @@ void error(const __FlashStringHelper*err) {
 /**************************************************************************/
 void setup(void)
 {
+  myservo.attach(2);
+  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(2, OUTPUT);
+  
+
   while (!Serial);  // required for Flora & Micro
   delay(500);
 
@@ -93,7 +104,7 @@ void setup(void)
   }
 
   //Give module a new name
-  ble.println("AT+GAPDEVNAME=TLONE"); // named TLONE
+  ble.println("AT+GAPDEVNAME=KasperNis"); // Navn: Bom
 
   // Check response status
   ble.waitForOK();
@@ -136,8 +147,38 @@ void loop(void)
   // Echo received data
   while ( ble.available() )
   {
-    int c = ble.read();
+   /*  
+    *   
+    *   Her Indsættes Kode til 
+    *   Servo Motor!
+    */
+    /* int c = ble.read();
+    
     Serial.print((char)c);
+      if ((char)c == '1') {
+        digitalWrite(2, HIGH);
+        delay(1000);
+      }
+      else{
+        digitalWrite(2, LOW);
+      } */
+    int c = ble.read();
+    
+    Serial.print((char)c);
+      if ((char)c == '1') {
+         for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
+    // in steps of 1 degree
+    myservo.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+  }
+ 
+      }
+      else{
+         for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
+    myservo.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);   
+      }
+      } 
   }
   delay(1000);
 }
