@@ -105,7 +105,9 @@ function onConnError(){
 	document.getElementById("receiveDiv").innerHTML =  "Received: " + bytesToString(data) + "<br/>";
 }
 
-// SE HEER!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// TIL at sende 1 tal for åben port
+//
+//TIL at sende 1 tal for åben port
 
 function data(txt){
 	messageInput.value = txt;
@@ -121,7 +123,7 @@ function onSend(){
 }
 
 
-// SE HEER!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// TIL at sende 1 tal for åben port *SLUT*
 
 function disconnect() {
 	ble.disconnect(deviceId, onDisconnect, onError);
