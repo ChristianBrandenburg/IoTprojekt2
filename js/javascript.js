@@ -1,6 +1,5 @@
-function conn() {
-  ble.connect(ConnDeviceId, connectCallback, disconnectCallback);
-}
+var device_id = "DE:4B:7D:E6:AD:65";
+ble.autoConnect(device_id, connectCallback, disconnectCallback);
 
 function checkInd() {
   messageInput.value = "Tjek ind";
@@ -13,23 +12,6 @@ function checkUd() {
 function sendData() { // send data to Arduino
 	var data = stringToBytes(messageInput.value);
 	ble.writeWithoutResponse(ConnDeviceId, blue.serviceUUID, blue.txCharacteristic, data, onSend, onError);
-}
-
-//succes
-function onConnect(){
- document.getElementById("statusDiv").innerHTML = " Status: Connected";
- document.getElementById("bleId").innerHTML = ConnDeviceId;
- ble.startNotification(ConnDeviceId, blue.serviceUUID, blue.rxCharacteristic, onData, onError);
-}
-
-//failure
-function onConnError(){
- alert("Problem connecting");
- document.getElementById("statusDiv").innerHTML = " Status: Disonnected";
-}
-
-function onDisconnect(){
-	document.getElementById("statusDiv").innerHTML = "Status: Disconnected";
 }
 
 /* ÆNDRINGER!! -->
