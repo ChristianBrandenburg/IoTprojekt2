@@ -1,12 +1,5 @@
-var ConnDeviceId = "DE:4B:7D:E6:AD:65";
-
 function conn() {
-  while (ConnDeviceId = "DE:4B:7D:E6:AD:65")
-  {
-      ble.connect(ConnDeviceId, connectCallback, disconnectCallback);
-  }
-}
-  
+  ble.connect(ConnDeviceId, connectCallback, disconnectCallback);
 }
 
 function checkInd() {
