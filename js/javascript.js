@@ -1,6 +1,6 @@
 function conn() {
-    var device_id = DE:4B:7D:E6:AD:65;
-    ble.connect(device_id, connectCallback, disconnectCallback);
+    var device_name = "RH";
+    ble.connect(device_name, connectCallback, disconnectCallback);
 }
 
 function checkInd() {
