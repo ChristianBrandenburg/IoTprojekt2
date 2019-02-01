@@ -20,39 +20,7 @@ var blue ={
 var ConnDeviceId;
 var deviceList =[];
 
-//beacon test
-//function insertText(){
-	//  document.getElementById("newContent").innerHTML = "Beacon er her!!! <br> BEACON1 <br>"; }
-	
-	//beacon test 
-	/*
-function onDiscoverDevice(device){
-	//Make a list in html and show devises
-	
-		var listItem = document.createElement('li'),
-		html = device.name;
-		listItem.innerHTML = html;
-		document.getElementById("bleDeviceList").appendChild(listItem);
-	
-}
-// beacon test
-	
-function Test(){
-	ble.scan([], 5, conn, onError);
-	 if (device.name == 'BEACON1') {
-	  document.getElementById("newContent").innerHTML = "Beacon er her!!! <br> BEACON1 <br>"; 
-	  } 
-	  */
-	
-//function onLoad(){
-//  ble.scan([], 5, conn, onError);
-  // beacon test
- /* if (device.name == 'BEACON1') {
-	  document.getElementById("BEACON1").innerHTML = "Beacon er her!!! <br> BEACON1 <br>"; 
-	  }
-	//  insertText(); */
-//}
-// BEACON TEST
+
  
 function onLoad(){
 	document.addEventListener('deviceready', onDeviceReady, false);
@@ -99,9 +67,10 @@ function conn(){
 }
 
 function connTest(){
-  ble.scan([], 5, conn, onError);
-  
+  ConnDeviceId = 'DE:4B:7D:E6:AD:65';
+  ble.autoConnect(ConnDeviceId, onConnect, onError);
 }
+
 
  //succes
 function onConnect(){
