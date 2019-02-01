@@ -18,6 +18,7 @@ var blue ={
 }
 
 var ConnDeviceId;
+var deviceList =[];
 
 function onLoad(){
   ble.scan([], 5, conn, onError);
