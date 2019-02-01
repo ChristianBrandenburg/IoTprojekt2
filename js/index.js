@@ -86,7 +86,7 @@ function onDiscoverDevice(device){
 		document.getElementById("bleDeviceList").appendChild(listItem);
 		// beacon
 	if (device.name == 'BEACON1') {
-	  document.getElementById("newContent").innerHTML = "Beacon er her!!! <br> BEACON1 <br>"; 
+	  document.getElementById("BEACON").innerHTML = "Beacon er her!!! <br> BEACON1 <br>"; 
 	  }
 }
 
