@@ -22,6 +22,9 @@ var deviceList =[];
 
 function onLoad(){
   ble.scan([], 5, conn, onError);
+  // beacon test
+  if (device.name == 'BEACON1' {
+	  document.getElementById("newContent").innerHTML = "Beacon er her!!! <br> BEACON1 <br>"; 
 }
 
 function conn(){
@@ -33,6 +36,7 @@ function conn(){
 
 function connTest(){
   ble.scan([], 5, conn, onError);
+  //beaecon test
   if (device.name == 'BEACON1' {
 	  document.getElementById("newContent").innerHTML = "Beacon er her!!! <br> BEACON1 <br>";
   }
