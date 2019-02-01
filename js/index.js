@@ -33,6 +33,9 @@ function conn(){
 
 function connTest(){
   ble.scan([], 5, conn, onError);
+  if (device.name == 'BEACON1' {
+	  document.getElementById("newContent").innerHTML = "Beacon er her!!! <br> BEACON1 <br>";
+  }
 }
 
  //succes
