@@ -1,4 +1,9 @@
 // ASCII only
+function bytesToString(buffer) {
+    return String.fromCharCode.apply(null, new Uint8Array(buffer));
+}
+
+// ASCII only
 function stringToBytes(string) {
     var array = new Uint8Array(string.length);
     for (var i = 0, l = string.length; i < l; i++) {
@@ -24,7 +29,7 @@ function conn(){
 	ConnDeviceId = 'DE:4B:7D:E6:AD:65';
 	document.getElementById("debugDiv").innerHTML += "<br>"+ConnDeviceId+"<br>"; //for debug:
 	ble.connect(ConnDeviceId, onConnect, onConnError);
- }
+}
 
  //succes
 function onConnect(){
@@ -48,7 +53,7 @@ function data(txt){
 }
 
 function sendData() { // send data to Arduino
-	 var data = stringToBytes(messageInput.value);
+	var data = stringToBytes(messageInput.value);
 	ble.writeWithoutResponse(ConnDeviceId, blue.serviceUUID, blue.txCharacteristic, data, onSend, onError);
 }
 
