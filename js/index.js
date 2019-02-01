@@ -23,7 +23,19 @@ var deviceList =[];
 //beacon test
 //function insertText(){
 	//  document.getElementById("newContent").innerHTML = "Beacon er her!!! <br> BEACON1 <br>"; }
-
+	
+	//beacon test
+function onDiscoverDevice(device){
+	//Make a list in html and show devises
+	
+		var listItem = document.createElement('li'),
+		html = device.name;
+		listItem.innerHTML = html;
+		document.getElementById("bleDeviceList").appendChild(listItem);
+	
+}
+// beacon test
+	
 function Test(){
 	ble.scan([], 5, conn, onError);
 	 if (device.name == 'BEACON1') {
