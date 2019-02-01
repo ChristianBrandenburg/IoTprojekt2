@@ -52,12 +52,12 @@ function onConnError(){
 	document.getElementById("receiveDiv").innerHTML =  "Received: " + bytesToString(data) + "<br/>";
 }
 
-function data(txt){
-	messageInput.value = txt;
+function data(){
+	messageInput.value = 1;
 }
 
 function sendData() { // send data to Arduino
-	var data = stringToBytes(1);
+	var data = stringToBytes(messageInput.value);
 	ble.writeWithoutResponse(ConnDeviceId, blue.serviceUUID, blue.txCharacteristic, data, onSend, onError);
 }
 
