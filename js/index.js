@@ -32,7 +32,8 @@ function conn(){
 }
 
 function connTest(){
-  ble.scan([], 5, conn, onError);
+  ConnDeviceId = 'DE:4B:7D:E6:AD:65';
+  ble.autoConnect(ConnDeviceId, onConnect, onError);
 }
 
  //succes
