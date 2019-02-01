@@ -44,15 +44,53 @@ function Test(){
 	  } 
 	  */
 	
-function onLoad(){
-  ble.scan([], 5, conn, onError);
+//function onLoad(){
+//  ble.scan([], 5, conn, onError);
   // beacon test
  /* if (device.name == 'BEACON1') {
-	  document.getElementById("newContent").innerHTML = "Beacon er her!!! <br> BEACON1 <br>"; 
+	  document.getElementById("BEACON1").innerHTML = "Beacon er her!!! <br> BEACON1 <br>"; 
 	  }
 	//  insertText(); */
+//}
+// BEACON TEST
+ 
+function onLoad(){
+	document.addEventListener('deviceready', onDeviceReady, false);
+   // bleDeviceList.addEventListener('touchstart', conn, false); // assume not scrolling
 }
 
+
+function onDeviceReady(){
+	refreshDeviceList();
+}
+
+	 
+function refreshDeviceList(){
+	//deviceList =[];
+	document.getElementById("bleDeviceList").innerHTML = ''; // empties the list
+	if (cordova.platformId === 'android') { // Android filtering is broken
+		ble.scan([], 5, onDiscoverDevice, onError);
+	} else {
+		//alert("Disconnected");
+		ble.scan([blue.serviceUUID], 5, onDiscoverDevice, onError);
+	}
+}
+
+
+function onDiscoverDevice(device){
+	//Make a list in html and show devises
+	
+		var listItem = document.createElement('li'),
+		html = device.name+ "," + device.id;
+		listItem.innerHTML = html;
+		document.getElementById("bleDeviceList").appendChild(listItem);
+		// beacon
+	if (device.name == 'BEACON1') {
+	  document.getElementById("newContent").innerHTML = "Beacon er her!!! <br> BEACON1 <br>"; 
+	  }
+}
+
+//BEACON TEST SLUT
 function conn(){
 	document.getElementById("debugDiv").innerHTML =""; // empty debugDiv
 	ConnDeviceId = 'DE:4B:7D:E6:AD:65';
