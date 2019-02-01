@@ -1,9 +1,4 @@
 // ASCII only
-function bytesToString(buffer) {
-    return String.fromCharCode.apply(null, new Uint8Array(buffer));
-}
-
-// ASCII only
 function stringToBytes(string) {
     var array = new Uint8Array(string.length);
     for (var i = 0, l = string.length; i < l; i++) {
@@ -58,7 +53,7 @@ function sendData() { // send data to Arduino
 }
 
 function onSend(){
-	document.getElementById("sendDiv").innerHTML = "Sent: " + messageInput.value + "<br/>";
+	document.getElementById("sendDiv").innerHTML = "Registreret: " + "<br/>";
 }
 
 function disconnect() {
