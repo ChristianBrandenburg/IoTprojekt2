@@ -31,6 +31,10 @@ function conn(){
 	ble.connect(ConnDeviceId, onConnect, onConnError);
 }
 
+function connTest(){
+  ble.scan([], 5, conn, onError);
+}
+
  //succes
 function onConnect(){
 	document.getElementById("statusDiv").innerHTML = " Status: Connected";
