@@ -21,15 +21,22 @@ var ConnDeviceId;
 var deviceList =[];
 
 //beacon test
-function insertText(){
-	  document.getElementById("newContent").innerHTML = "Beacon er her!!! <br> BEACON1 <br>"; }
+//function insertText(){
+	//  document.getElementById("newContent").innerHTML = "Beacon er her!!! <br> BEACON1 <br>"; }
 
-
+function Test(){
+	ble.scan([], 5, conn, onError);
+	 if (device.name == 'BEACON1') {
+	  document.getElementById("newContent").innerHTML = "Beacon er her!!! <br> BEACON1 <br>"; 
+	  }
+	
 function onLoad(){
   ble.scan([], 5, conn, onError);
   // beacon test
-  if (device.name == 'BEACON1') {
-	  insertText();
+ /* if (device.name == 'BEACON1') {
+	  document.getElementById("newContent").innerHTML = "Beacon er her!!! <br> BEACON1 <br>"; 
+	  }
+	//  insertText(); */
 }
 
 function conn(){
