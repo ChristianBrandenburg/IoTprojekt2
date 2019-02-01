@@ -52,8 +52,8 @@ function onConnError(){
 	document.getElementById("receiveDiv").innerHTML =  "Received: " + bytesToString(data) + "<br/>";
 }
 
-function data(){
-	messageInput.value = 1;
+function data(txt){
+	messageInput.value = txt;
 }
 
 function sendData() { // send data to Arduino
