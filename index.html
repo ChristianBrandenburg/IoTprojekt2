@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title> IoT projekt 2 </title>
+  <meta charset="utf-8" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="stylesheet.css"> </link>
   <script type="text/javascript" src="js/javascript.js"> </script>
   <script type="text/javascript" src="cordova.js"></script>
 </head>
-<body>
+<body onload="onLoad()">
 <br>
 <h1>SesamApp</h1>
-<br>
-<button id = "connect" onclick = "conn()" > Connect </button>
-<br>
+<br><br>
+<div id="statusDiv">Status: Disconnected</div>
+<div id="bleId">DeviceId:</div>
+<div id="debugDiv"></div>
+<br><br>
 <button id = "checkIndKnap" onclick="checkInd()" onclick="data('1')"> Check ind </button>
 <br><br><br>
 <button id = "checkUdKnap" onclick="checkUd()"> Check ud </button>
