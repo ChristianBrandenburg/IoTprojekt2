@@ -20,11 +20,16 @@ var blue ={
 var ConnDeviceId;
 var deviceList =[];
 
+//beacon test
+function insertText(){
+	  document.getElementById("newContent").innerHTML = "Beacon er her!!! <br> BEACON1 <br>"; }
+
+
 function onLoad(){
   ble.scan([], 5, conn, onError);
   // beacon test
-  if (device.name == 'BEACON1' {
-	  document.getElementById("newContent").innerHTML = "Beacon er her!!! <br> BEACON1 <br>"; 
+  if (device.name == 'BEACON1') {
+	  insertText();
 }
 
 function conn(){
@@ -36,10 +41,7 @@ function conn(){
 
 function connTest(){
   ble.scan([], 5, conn, onError);
-  //beaecon test
-  if (device.name == 'BEACON1' {
-	  document.getElementById("newContent").innerHTML = "Beacon er her!!! <br> BEACON1 <br>";
-  }
+  
 }
 
  //succes
