@@ -78,6 +78,20 @@ font: bold 20px Calibri;
 	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 	
 }
+#aabenBom:hover
+{
+	
+	color:grey;
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+	
+}
+#button:hover
+{
+	
+	color:grey;
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+	
+}
 #aabenBom:active{
   background-color: black;
   box-shadow: 0 5px #666;
