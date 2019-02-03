@@ -1,12 +1,20 @@
+h1
+{
+	color: white;
+	font-size: 75px;
+}
+
 body {
   text-align: center;
   background-color: darkolivegreen;
+  background-image: url("1.jpg");
+  background-repeat:no-repeat;
 }
 
 .button {
   font: bold 11px Arial;
   text-decoration: none;
-  background-color: #EEEEEE;
+  background-color: #FFFFFFFF;
   color: #333333;
   padding: 2px 6px 2px 6px;
   border-top: 1px solid #CCCCCC;
@@ -14,3 +22,28 @@ body {
   border-bottom: 1px solid #333333;
   border-left: 1px solid #CCCCCC;
 }
+
+#connect
+{
+	font: bold 15px Calibri;  
+	  background-color: #FFFFFFFF;
+	color: #333333;
+  padding: 10px 30px 10px 30px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+  border-radius: 50px ;
+}
+
+#connect:hover
+{
+	
+	color:grey;
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+	
+}
+#connect:active {
+  background-color: black;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
