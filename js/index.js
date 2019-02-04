@@ -84,8 +84,32 @@ function datetime()
     hours = d.getHours().toString().length == 1 ? '0'+d.getHours() : d.getHours(),
     months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
     days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-	
+
 	var date = days[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+' '+d.getFullYear()+' '+hours+':'+minutes;
-	
+
 	document.getElementById("dato").innerHTML = date;
+
+  var ul = document.getElementById("list");
+  var li = document.createElement("li");
+  li.appendChild(document.createTextNode(date));
+  ul.appendChild(li);
+}
+
+/*
+function logging() {
+  set fso = CreateObject("Scripting.FilesystemObject");
+  set s = fso.CreateTextFile("C:/Users/bluew/Documents/GitHub/IoTprojekt2/datotext.txt", True);
+
+  s.writeline();
+  s.writeline("-------------------------------------");
+  s.Close();
+}
+*/
+
+function logging() {
+  document.getElementById("dato").innerHTML = test
+  var ul = document.getElementById("list");
+  var li = document.createElement("li");
+  li.appendChild(document.createTextNode(test));
+  ul.appendChild(li);
 }
