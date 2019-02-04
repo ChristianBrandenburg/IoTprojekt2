@@ -105,5 +105,5 @@ function Moedind() {
 }
 
 function loadStopCallBack() {
-   inAppBrowserRef.close();
+   ref.close();
 }
