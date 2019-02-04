@@ -31,12 +31,23 @@ var deviceList =[];
 // se https://www.w3schools.com/jsref/met_document_addeventlistener.asp
 function onLoad(){
 	document.addEventListener('deviceready', onDeviceReady, false);
+  window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
+      console.log('file system open: ' + fs.name);
+      fs.root.getFile("newPersistentFile.txt", { create: true, exclusive: false }, function (fileEntry) {
+
+          console.log("fileEntry is file?" + fileEntry.isFile.toString());
+          // fileEntry.name == 'someFile.txt'
+          // fileEntry.fullPath == '/someFile.txt'
+          writeFile(fileEntry, null);
+      }, onErrorCreateFile);
+  }, onErrorLoadFs);
    // bleDeviceList.addEventListener('touchstart', conn, false); // assume not scrolling
 }
 
 // Denne funktion køres efter onLoad funktionen.
 function onDeviceReady(){
 	refreshDeviceList();
+  console.log(cordova.file);
 }
 
 // Denne funktion køres efter on DeviceReady. Vi skal bruge denne funktion til
@@ -136,4 +147,37 @@ function onDisconnect(){
 // Denne funktion giver fejlbeskeder på skærmen.
 function onError(reason)  {
 	alert("ERROR: " + reason); // real apps should use notification.alert
+}
+
+function datetime()
+{
+	document.getElementById("dato").innerHTML ="";
+	var d = new Date(),
+    minutes = d.getMinutes().toString().length == 1 ? '0'+d.getMinutes() : d.getMinutes(),
+    hours = d.getHours().toString().length == 1 ? '0'+d.getHours() : d.getHours(),
+    months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+    days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+	var date = days[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+' '+d.getFullYear()+' '+hours+':'+minutes;
+
+	document.getElementById("dato").innerHTML = date;
+}
+
+function writeFile(fileEntry, dataObj) {
+    // Create a FileWriter object for our FileEntry (log.txt).
+    fileEntry.createWriter(function (fileWriter) {
+        fileWriter.onwriteend = function() {
+            console.log("Successful file write...");
+            readFile(fileEntry);
+        };
+        fileWriter.onerror = function (e) {
+            console.log("Failed file write: " + e.toString());
+        };
+        // If data object is not passed in,
+        // create a new Blob instead.
+        if (!dataObj) {
+            dataObj = new Blob(['some file data'], { type: 'text/plain' });
+        }
+        fileWriter.write(dataObj);
+    });
 }
