@@ -17,7 +17,7 @@ var blue ={
 
 // Variabler der bruges til at identificere basestationen og lave en liste
 // over resultatet af en scanning
-var ConnDeviceId = 'DE:4B:7D:E6:AD:65';
+var ConnDeviceId
 var deviceList =[];
 var inRange = 0;
 
@@ -39,36 +39,26 @@ function onDeviceReady(){
 // Denne funktion køres efter on DeviceReady. Vi skal bruge denne funktion til
 // at scanne efter vores beacon. Skal optimeres så den scanner i et interval
 function refreshDeviceList(){
-	//deviceList =[];
-	document.getElementById("bleDeviceList").innerHTML = ''; // empties the list
-	if (cordova.platformId === 'android') { // Android filtering is broken
-		ble.scan([], 5, onDiscoverDevice, onError);
-	} else {
-		//alert("Disconnected");
-		ble.scan([blue.serviceUUID], 5, onDiscoverDevice, onError);
-// https://github.com/don/cordova-plugin-ble-central#scan
+		ble.scan([], 10, onDiscoverDevice, onError);
 	}
 }
 
 // Denne funktion benytter listen fra refreshDeviceList og giver besked når
 // vore beacon er fundet. Skal sætte en timestamp funktion igang.
 function onDiscoverDevice(device){
-	//Make a list in html and show devises
-
-		var listItem = document.createElement('li'),
-		html = device.name+ "," + device.id;
-		listItem.innerHTML = html;
-		document.getElementById("bleDeviceList").appendChild(listItem);
-		// beacon
 	if (device.name == 'BEACON1') {
     inRange = 1;
 	  document.getElementById("BEACON").innerHTML = "Beacon er her!!! <br> BEACON1 <br>";
 	  }
+  else {
+    refreshDeviceList();
+  }
 }
 
 // Denne funktion forbinder appen automatisk med vores blufruit, der
 // kontrollerer bommen. Undersøg om den kan rykkes op til onLoad funktionen.
 function connect(){
+  ConnDeviceId = 'DE:4B:7D:E6:AD:65';
   // https://github.com/don/cordova-plugin-ble-central#autoconnect
   ble.autoConnect(ConnDeviceId, onConnect, onError);
 }
