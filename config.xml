@@ -27,7 +27,7 @@
         <variable name="BLUETOOTH_USAGE_DESCRIPTION" value="Bluetooth development purposes" />
     </plugin>
 
-	 <plugin name="cordova-plugin-file" spec="~2.0.1 />
+	 <plugin name="cordova-plugin-file" spec="~6.0.2-dev" />
 	 	<preference name="AndroidPersistentFileLocation" value="Internal" />
 	 	<preference name="AndroidPersistentFileLocation" value="Compatibility" />
 
