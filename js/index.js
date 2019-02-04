@@ -95,3 +95,10 @@ function datetime()
   li.appendChild(document.createTextNode(date));
   ul.appendChild(li);
 }
+
+function Moedind(url) {
+  var url = "http://api.thingspeak.com/update?api_key=QS1B4C4WUR75QAWZ&field1=1";
+  var target = '_blank';
+  var options = "location = yes"
+  var ref = cordova.InAppBrowser.open(url, target, options);
+}
