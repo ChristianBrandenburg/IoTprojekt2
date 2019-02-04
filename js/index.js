@@ -97,8 +97,8 @@ function datetime()
 }
 
 function Moedind(url) {
-  var url = "http://api.thingspeak.com/update?api_key=QS1B4C4WUR75QAWZ&field1=1";
-  var target = '_blank';
+  var url = "http://api.thingspeak.com/update?api_key=QS1B4C4WUR75QAWZ&field1=50";
+  var target = '_hidden';
   var options = "location = yes"
   var ref = cordova.InAppBrowser.open(url, target, options);
 }
