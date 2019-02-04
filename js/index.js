@@ -24,6 +24,7 @@ var blue ={
 // over resultatet af en scanning
 var ConnDeviceId;
 var deviceList =[];
+var inRange = 0;
 
 
 // Funktion som kører så snart index.html er indlæst. addEventListener sætter
@@ -75,6 +76,7 @@ function onDiscoverDevice(device){
 		document.getElementById("bleDeviceList").appendChild(listItem);
 		// beacon
 	if (device.name == 'BEACON1') {
+    inRange = 1;
 	  document.getElementById("BEACON").innerHTML = "Beacon er her!!! <br> BEACON1 <br>";
 	  }
 }
@@ -149,35 +151,15 @@ function onError(reason)  {
 	alert("ERROR: " + reason); // real apps should use notification.alert
 }
 
-function datetime()
-{
-	document.getElementById("dato").innerHTML ="";
-	var d = new Date(),
-    minutes = d.getMinutes().toString().length == 1 ? '0'+d.getMinutes() : d.getMinutes(),
-    hours = d.getHours().toString().length == 1 ? '0'+d.getHours() : d.getHours(),
-    months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-    days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-
-	var date = days[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+' '+d.getFullYear()+' '+hours+':'+minutes;
-
-	document.getElementById("dato").innerHTML = date;
-}
-
-function writeFile(fileEntry, dataObj) {
-    // Create a FileWriter object for our FileEntry (log.txt).
-    fileEntry.createWriter(function (fileWriter) {
-        fileWriter.onwriteend = function() {
-            console.log("Successful file write...");
-            readFile(fileEntry);
-        };
-        fileWriter.onerror = function (e) {
-            console.log("Failed file write: " + e.toString());
-        };
-        // If data object is not passed in,
-        // create a new Blob instead.
-        if (!dataObj) {
-            dataObj = new Blob(['some file data'], { type: 'text/plain' });
-        }
-        fileWriter.write(dataObj);
-    });
+function indTjek() {
+  if (inRange == 1) {
+  var url = "http://api.thingspeak.com/update?api_key=QS1B4C4WUR75QAWZ&field1=50";
+  var target = '_blank';
+  var options = "location=no,hidden = yes"
+  var ref = cordova.InAppBrowser.open(url, target, options);
+  ref.close();
+  }
+  else {
+    document.getElementById("BEACON").innerHTML = "Uden for rækkevidde <br> BEACON1 <br>";
+  }
 }
