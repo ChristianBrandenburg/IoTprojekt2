@@ -36,24 +36,40 @@ void error(const __FlashStringHelper*err) {
   Serial.println(err);
   while (1);
 }
-int pos = 0; 
+int pos = 0;
 #include <Servo.h>
 
 Servo myservo;  // create servo object to control a servo
 // twelve servo objects can be created on most boards
- 
+
 /**************************************************************************/
 /*!
     @brief  Sets up the HW an the BLE module (this function is called
             automatically on startup)
 */
 /**************************************************************************/
+// defines pins numbers
+const int trigPin = 9;
+const int echoPin = 6;
+// defines variables
+
+long duration;
+int distance;
+
 void setup(void)
 {
+  /* Ultrasonic Sensor HC-SR04
+
+  */
+  pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
+  pinMode(echoPin, INPUT); // Sets the echoPin as an Input
+  //Serial.begin(115200);
+
+  // servo
   myservo.attach(2);
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(2, OUTPUT);
-  
+
 
   while (!Serial);  // required for Flora & Micro
   delay(500);
@@ -126,8 +142,24 @@ void setup(void)
 /**************************************************************************/
 void loop(void)
 {
+  // Clears the trigPin
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  // Sets the trigPin on HIGH state for 10 micro seconds
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, LOW);
+  // Reads the echoPin, returns the sound wave travel time in microseconds
+  duration = pulseIn(echoPin, HIGH);
+  // Calculating the distance
+  distance = duration * 0.034 / 2;
+  // Prints the distance on the Serial Monitor
+  Serial.print("Distance: ");
+  Serial.println(distance);
+
   // Check for user input
   char n, inputs[BUFSIZE + 1];
+
 
   if (Serial.available())
   {
@@ -140,20 +172,25 @@ void loop(void)
     // Send input data to host via Bluefruit
     ble.print(inputs);
   }
+
+  /////
   if (ble.available()) {
     Serial.print("* "); Serial.print(ble.available()); Serial.println(F(" bytes available from BTLE"));
   }
   // Echo received data
   while ( ble.available() )
   {
-   /*  
-    *   
-    *   Her Indsættes Kode til 
-    *   Servo Motor!
-    */
-    /* int c = ble.read();
-    
-    Serial.print((char)c);
+
+
+
+    /*
+
+         Her Indsættes Kode til
+         Servo Motor!
+    ///////
+    ///// int c = ble.read();
+
+      Serial.print((char)c);
       if ((char)c == '1') {
         digitalWrite(2, HIGH);
         delay(1000);
@@ -161,24 +198,26 @@ void loop(void)
       else{
         digitalWrite(2, LOW);
       } */
+      ///////
     int c = ble.read();
-    
-    
+
+
+
     Serial.print((char)c);
-      if ((char)c == '1') {
-         for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
-    // in steps of 1 degree
-    myservo.write(pos);              // tell servo to go to position in variable 'pos'
-    delay(15);                       // waits 15ms for the servo to reach the position
-  }
- 
+    if ((char)c == '1') {
+      for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
+        // in steps of 1 degree
+        myservo.write(pos = 180);              // tell servo to go to position in variable 'pos'
+        delay(15);                       // waits 15ms for the servo to reach the position
       }
-      else{
-         for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
-    myservo.write(pos);              // tell servo to go to position in variable 'pos'
-    delay(15);   
-      }
-      } 
+      delay (1000);
+    }
+    if (distance > 20) {
+      // for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
+      myservo.write(pos = 0);              // tell servo to go to position in variable 'pos'
+      delay(15);
+    }
   }
-  delay(1000);
+
 }
+// delay(1000);

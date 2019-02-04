@@ -16,7 +16,7 @@ font: bold 20px Calibri;
 
 body {
   text-align: center;
-  
+  background-color: darkolivegreen;
   background-image: url("1.jpg");
   background-repeat:no-repeat;
 }
