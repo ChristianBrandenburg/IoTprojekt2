@@ -22,6 +22,7 @@ var deviceList =[];
 
 function onLoad(){
   ble.scan([], 5, conn, onError);
+
 }
 
 function conn(){
@@ -92,24 +93,5 @@ function datetime()
   var ul = document.getElementById("list");
   var li = document.createElement("li");
   li.appendChild(document.createTextNode(date));
-  ul.appendChild(li);
-}
-
-/*
-function logging() {
-  set fso = CreateObject("Scripting.FilesystemObject");
-  set s = fso.CreateTextFile("C:/Users/bluew/Documents/GitHub/IoTprojekt2/datotext.txt", True);
-
-  s.writeline();
-  s.writeline("-------------------------------------");
-  s.Close();
-}
-*/
-
-function logging() {
-  document.getElementById("dato").innerHTML = test
-  var ul = document.getElementById("list");
-  var li = document.createElement("li");
-  li.appendChild(document.createTextNode(test));
   ul.appendChild(li);
 }
