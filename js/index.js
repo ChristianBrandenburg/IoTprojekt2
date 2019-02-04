@@ -27,7 +27,6 @@ var inRange = 0;
 // se https://www.w3schools.com/jsref/met_document_addeventlistener.asp
 function onLoad(){
 	document.addEventListener('deviceready', onDeviceReady, false);
-  document.addEventListener('deviceready2', connect, false);
 }
 
 // Denne funktion køres efter onLoad funktionen.
@@ -59,6 +58,7 @@ function onDiscoverDevice(device){
 function connect(){
   ConnDeviceId = 'DE:4B:7D:E6:AD:65';
   ble.autoConnect(ConnDeviceId, onConnect, onError);
+  sendData();
 }
 
  // Denne funktion giver besked hvis der er forbundet til bommen.
