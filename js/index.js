@@ -40,7 +40,6 @@ function onDeviceReady(){
 // at scanne efter vores beacon. Skal optimeres så den scanner i et interval
 function refreshDeviceList(){
 		ble.scan([], 10, onDiscoverDevice, onError);
-	}
 }
 
 // Denne funktion benytter listen fra refreshDeviceList og giver besked når
