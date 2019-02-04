@@ -17,7 +17,7 @@ var blue ={
 
 // Variabler der bruges til at identificere basestationen og lave en liste
 // over resultatet af en scanning
-var ConnDeviceId
+var ConnDeviceId;
 var deviceList =[];
 var inRange = 0;
 
