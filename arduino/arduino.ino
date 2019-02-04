@@ -7,6 +7,7 @@
 #include "Adafruit_BLE.h"
 #include "Adafruit_BluefruitLE_SPI.h"
 #include "Adafruit_BluefruitLE_UART.h"
+#include <Servo.h> // servo bibliotek
 
 #include "BluefruitConfig.h"
 
@@ -36,11 +37,11 @@ void error(const __FlashStringHelper*err) {
   Serial.println(err);
   while (1);
 }
-int pos = 0;
-#include <Servo.h>
+int pos = 0; // pos er servo udgangspunkt
 
-Servo myservo;  // create servo object to control a servo
-// twelve servo objects can be created on most boards
+
+Servo myservo;  // skaber servo objekt for at styre servo
+
 
 /**************************************************************************/
 /*!
@@ -49,25 +50,22 @@ Servo myservo;  // create servo object to control a servo
 */
 /**************************************************************************/
 // defines pins numbers
-const int trigPin = 9;
-const int echoPin = 6;
+const int trigPin = 9; // sender
+const int echoPin = 6; // modtager
 // defines variables
 
-long duration;
-int distance;
+long duration; // til at måle afstand
+int distance; // selve afstanden
 
 void setup(void)
 {
-  /* Ultrasonic Sensor HC-SR04
-
-  */
+  // Ultrasonic Sensor HC-SR04
   pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
   pinMode(echoPin, INPUT); // Sets the echoPin as an Input
-  //Serial.begin(115200);
+
 
   // servo
   myservo.attach(2);
-  pinMode(LED_BUILTIN, OUTPUT);
   pinMode(2, OUTPUT);
 
 
@@ -102,11 +100,7 @@ void setup(void)
   Serial.println("Requesting Bluefruit info:");
   /* Print Bluefruit information */
   ble.info();
-
-
-
   ble.verbose(false);  // debug info is a little annoying after this point!
-
 
   Serial.println(F("******************************"));
 
@@ -119,7 +113,7 @@ void setup(void)
   }
 
   //Give module a new name
-  ble.println("AT+GAPDEVNAME=KasperNis"); // Navn: Bom
+  ble.println("AT+GAPDEVNAME=MOTORBOM"); // Navn på enheden, der bliver vist.
 
   // Check response status
   ble.waitForOK();
@@ -142,6 +136,8 @@ void setup(void)
 /**************************************************************************/
 void loop(void)
 {
+  // Ultrasonic Sensor HC-SR04
+  //*************************
   // Clears the trigPin
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
@@ -159,7 +155,7 @@ void loop(void)
   delay(1000);
 
 
-      
+
   // Check for user input
   char n, inputs[BUFSIZE + 1];
 
@@ -175,13 +171,14 @@ void loop(void)
     // Send input data to host via Bluefruit
     ble.print(inputs);
   }
-Serial.println( "hello");
+
+  // servo lukker bom, hvis afstanden er til det
   if (distance >= 20) {
-      for (pos = 90; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
-   //  pos -= 1;
+    for (pos = 90; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
+      //  pos -= 1;
       myservo.write(pos = 0);              // tell servo to go to position in variable 'pos'
       delay(15);
-    } 
+    }
   }
 
   /////
@@ -192,29 +189,7 @@ Serial.println( "hello");
   while ( ble.available() )
   {
 
-
-
-    /*
-
-         Her Indsættes Kode til
-         Servo Motor!
-    ///////
-    ///// int c = ble.read();
-
-      Serial.print((char)c);
-      if ((char)c == '1') {
-        digitalWrite(2, HIGH);
-        delay(1000);
-      }
-      else{
-        digitalWrite(2, LOW);
-      } */
-      ///////
-
-      
     int c = ble.read();
-
- 
 
     Serial.print((char)c);
     if ((char)c == '1') {
@@ -223,16 +198,7 @@ Serial.println( "hello");
         myservo.write(pos = 90);              // tell servo to go to position in variable 'pos'
         delay(2500);                       // waits 15ms for the servo to reach the position
       }
-      
-    } 
-  /*  if (distance >= 20) {
-      for (pos = 90; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
-   //  pos -= 1;
-      myservo.write(pos = 0);              // tell servo to go to position in variable 'pos'
-      delay(15);
-    } 
-  } */
-  
 
-  }}
-// delay(1000);
+    }
+  }
+}
