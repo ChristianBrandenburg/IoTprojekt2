@@ -96,7 +96,7 @@ function datetime()
   ul.appendChild(li);
 }
 
-function Moedind(url) {
+function Moedind() {
   var url = "http://api.thingspeak.com/update?api_key=QS1B4C4WUR75QAWZ&field1=50";
   var target = '_blank';
   var options = "hidden = yes"
