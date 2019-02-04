@@ -27,13 +27,12 @@ var inRange = 0;
 // se https://www.w3schools.com/jsref/met_document_addeventlistener.asp
 function onLoad(){
 	document.addEventListener('deviceready', onDeviceReady, false);
-   // bleDeviceList.addEventListener('touchstart', conn, false); // assume not scrolling
+  document.addEventListener('deviceready2', connect, false);
 }
 
 // Denne funktion køres efter onLoad funktionen.
 function onDeviceReady(){
 	refreshDeviceList();
-  connect();
 }
 
 // Denne funktion køres efter on DeviceReady. Vi skal bruge denne funktion til
@@ -51,6 +50,7 @@ function onDiscoverDevice(device){
 	  }
   else {
     refreshDeviceList();
+    document.getElementById("BEACON").innerHTML = "Beacon er ikke her!!! <br> BEACON1 <br>";
   }
 }
 
@@ -58,7 +58,6 @@ function onDiscoverDevice(device){
 // kontrollerer bommen. Undersøg om den kan rykkes op til onLoad funktionen.
 function connect(){
   ConnDeviceId = 'DE:4B:7D:E6:AD:65';
-  // https://github.com/don/cordova-plugin-ble-central#autoconnect
   ble.autoConnect(ConnDeviceId, onConnect, onError);
 }
 
