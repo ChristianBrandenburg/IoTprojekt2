@@ -101,9 +101,5 @@ function Moedind() {
   var target = '_blank';
   var options = "location=no,hidden = yes"
   var ref = cordova.InAppBrowser.open(url, target, options);
-  inAppBrowserRef.addEventListener('loadstop', loadStopCallBack);
-}
-
-function loadStopCallBack() {
-   ref.close();
+  ref.close();
 }
