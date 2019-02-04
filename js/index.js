@@ -37,7 +37,7 @@ function onDeviceReady(){
 // Denne funktion køres efter on DeviceReady. Vi skal bruge denne funktion til
 // at scanne efter vores beacon. Skal optimeres så den scanner i et interval
 function refreshDeviceList(){
-		ble.scan([], 10, onDiscoverDevice, onError);
+		ble.scan([], 5, onDiscoverDevice, onError);
 }
 
 // Denne funktion benytter listen fra refreshDeviceList og giver besked når
@@ -48,7 +48,6 @@ function onDiscoverDevice(device){
 	  document.getElementById("BEACON").innerHTML = "Beacon er her!!! <br> BEACON1 <br>";
 	  }
   else {
-    refreshDeviceList();
     document.getElementById("BEACON").innerHTML = "Beacon er ikke her!!! <br> BEACON1 <br>";
   }
 }
@@ -58,14 +57,14 @@ function onDiscoverDevice(device){
 function connect(){
   ConnDeviceId = 'DE:4B:7D:E6:AD:65';
   ble.autoConnect(ConnDeviceId, onConnect, onError);
-  sendData();
 }
 
  // Denne funktion giver besked hvis der er forbundet til bommen.
 function onConnect(){
 	document.getElementById("statusDiv").innerHTML = " Status: Connected";
-// https://github.com/don/cordova-plugin-ble-central#startnotification
-	ble.startNotification(ConnDeviceId, blue.serviceUUID, blue.rxCharacteristic, onData, onError);
+  var data = stringToBytes('1');
+// https://github.com/don/cordova-plugin-ble-central#writewithoutresponse
+	ble.writeWithoutResponse(ConnDeviceId, blue.serviceUUID, blue.txCharacteristic, data);
 }
 
 // Denne funktion giver besked hvis der ikke er forbundet til bommen.
@@ -95,6 +94,7 @@ function indTjek() {
     ref.close();
   }
   else {
+    refreshDeviceList();
     document.getElementById("BEACON").innerHTML = "Uden for rækkevidde <br> BEACON1 <br>";
   }
 }
