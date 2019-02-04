@@ -16,11 +16,32 @@ font: bold 20px Calibri;
 
 body {
   text-align: center;
-  background-color: darkolivegreen;
+  background-color: grey;
   background-image: url("1.jpg");
-  background-repeat:no-repeat;
+  background-repeat:repeat;
 }
-
+#checkUdKnap{
+	font: bold 15px Calibri;  
+	  background-color: #FFFFFFFF;
+	color: #333333;
+  padding: 5px 30px 5px 30px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+  border-radius: 50px ;
+}
+#checkIndKnap{
+	font: bold 15px Calibri;  
+	  background-color: #FFFFFFFF;
+	color: #333333;
+  padding: 5px 30px 5px 30px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+  border-radius: 50px ;
+}
 .button {
   font: bold 15px Calibri;  
 	  background-color: #FFFFFFFF;
@@ -98,6 +119,16 @@ font: bold 20px Calibri;
   transform: translateY(4px);
 }
 .button:active {
+  background-color: black;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+#checkUdKnap:active {
+  background-color: black;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+#checkIndKnap:active {
   background-color: black;
   box-shadow: 0 5px #666;
   transform: translateY(4px);

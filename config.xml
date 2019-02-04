@@ -270,6 +270,11 @@ to config.xml in order for the application to find previously stored files.
         <variable name="BLUETOOTH_USAGE_DESCRIPTION" value="Bluetooth development purposes" />
     </plugin>
 
+<<<<<<< HEAD
+=======
+<plugin name="cordova-plugin-file" >
+
+>>>>>>> 5369e96a1bcdedee5fe38844d17e7efc935d2f34
 	<engine name="android" spec="~6.4.0" />
     <engine name="ios" spec="^4.5.3" />
 
