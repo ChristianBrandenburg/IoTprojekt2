@@ -99,6 +99,11 @@ function datetime()
 function Moedind() {
   var url = "http://api.thingspeak.com/update?api_key=QS1B4C4WUR75QAWZ&field1=50";
   var target = '_blank';
-  var options = "hidden = yes"
+  var options = "location=no,hidden = yes"
   var ref = cordova.InAppBrowser.open(url, target, options);
+  inAppBrowserRef.addEventListener('loadstop', loadStopCallBack);
+}
+
+function loadStopCallBack() {
+   inAppBrowserRef.close();
 }
