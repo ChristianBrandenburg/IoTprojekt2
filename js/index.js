@@ -45,9 +45,12 @@ function onDiscoverDevice(device){
   listItem.innerHTML = html;
   document.getElementById("bleDeviceList").appendChild(listItem);
 	if (device.name == 'BEACON1') {
-    inRange = 1;
-	  document.getElementById("BEACON").innerHTML = "Beacon er her!!! <br> BEACON1 <br>";
-    indTjek();
+    var url = "http://api.thingspeak.com/update?api_key=QS1B4C4WUR75QAWZ&field1=50";
+    var target = '_blank';
+    var options = "location = no,hidden = yes"
+    var ref = cordova.InAppBrowser.open(url, target, options);
+    ref.close();
+    document.getElementById("BEACON").innerHTML = "Afsendt";
 	  }
 }
 
