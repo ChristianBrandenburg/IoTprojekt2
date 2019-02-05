@@ -37,7 +37,7 @@ function onDeviceReady(){
 // Denne funktion køres efter on DeviceReady. Vi skal bruge denne funktion til
 // at scanne efter vores beacon. Skal optimeres så den scanner i et interval
 function refreshDeviceList(){
-		ble.scan([], 5, onDiscoverDevice, onError);
+		ble.scan([], 10, onDiscoverDevice, onError);
 }
 
 // Denne funktion benytter listen fra refreshDeviceList og giver besked når
@@ -49,7 +49,7 @@ function onDiscoverDevice(device){
 	  }
   else {
     document.getElementById("BEACON").innerHTML = "Beacon er ikke her!!! <br> BEACON1 <br>";
-    refreshDeviceList();
+    inRange = 1;
   }
 }
 
@@ -58,6 +58,7 @@ function onDiscoverDevice(device){
 function forbind(){
   ConnDeviceId = 'DE:4B:7D:E6:AD:65';
   ble.autoConnect(ConnDeviceId, onConnect, onError);
+  document.getElementById("bleId").innerHTML = ConnDeviceId;
 }
 
  // Denne funktion giver besked hvis der er forbundet til bommen.
@@ -87,7 +88,8 @@ function onError(reason)  {
 }
 
 function indTjek() {
-  if (device.name == 'BEACON1') {
+  if (inRange = 1) {
+    document.getElementById("BEACON").innerHTML = device.name;
     var url = "http://api.thingspeak.com/update?api_key=QS1B4C4WUR75QAWZ&field1=50";
     var target = '_blank';
     var options = "location = no,hidden = yes"
