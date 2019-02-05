@@ -38,6 +38,7 @@ function onDeviceReady(){
 // at scanne efter vores beacon. Skal optimeres så den scanner i et interval
 function refreshDeviceList(){
 		ble.scan([], 10, onDiscoverDevice, onError);
+        document.getElementById("BEACON").innerHTML = "Scanner";
 }
 
 // Denne funktion benytter listen fra refreshDeviceList og giver besked når
@@ -49,7 +50,7 @@ function onDiscoverDevice(device){
 	  }
   else {
     document.getElementById("BEACON").innerHTML = "Beacon er ikke her!!! <br> BEACON1 <br>";
-    inRange = 1;
+    refreshDeviceList();
   }
 }
 
@@ -61,12 +62,14 @@ function forbind(){
   document.getElementById("bleId").innerHTML = ConnDeviceId;
 }
 
+function onSend(){
+	document.getElementById("debugDiv").innerHTML = "Sent: " + messageInput.value + "<br/>";
+}
+
  // Denne funktion giver besked hvis der er forbundet til bommen.
 function onConnect(){
 	document.getElementById("statusDiv").innerHTML = " Status: Connected";
-  var data = stringToBytes('1');
-// https://github.com/don/cordova-plugin-ble-central#writewithoutresponse
-	ble.writeWithoutResponse(ConnDeviceId, blue.serviceUUID, blue.txCharacteristic, data);
+  sendData();
 }
 
 // Denne funktion giver besked hvis der ikke er forbundet til bommen.
@@ -80,6 +83,7 @@ function sendData() { // send data to Arduino
 	var data = stringToBytes('1');
 // https://github.com/don/cordova-plugin-ble-central#writewithoutresponse
 	ble.writeWithoutResponse(ConnDeviceId, blue.serviceUUID, blue.txCharacteristic, data, onSend, onError);
+  	document.getElementById("statusDiv").innerHTML = "Sender";
 }
 
 // Denne funktion giver fejlbeskeder på skærmen.
