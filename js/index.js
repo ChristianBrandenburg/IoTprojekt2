@@ -44,7 +44,7 @@ function onDiscoverDevice(device){
   html = device.name + "," + device.id;
   listItem.innerHTML = html;
   document.getElementById("bleDeviceList").appendChild(listItem);
-	if (device.id == 'EF:1E:94:22:B3::E8') {
+	if (device.id == 'EF:1E:94:22:B3:E8') {
     var url = "http://api.thingspeak.com/update?api_key=QS1B4C4WUR75QAWZ&field1=50";
     var target = '_blank';
     var options = "location = no,hidden = yes"
