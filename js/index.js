@@ -44,6 +44,12 @@ function refreshDeviceList(){
 // Denne funktion benytter listen fra refreshDeviceList og giver besked når
 // vore beacon er fundet. Skal sætte en timestamp funktion igang.
 function onDiscoverDevice(device){
+
+  var listItem = document.createElement('li'),
+  html = device.name+ "," + device.id;
+  listItem.innerHTML = html;
+  document.getElementById("bleDeviceList").appendChild(listItem);
+
 	if (device.name == 'BEACON1') {
     inRange = 1;
 	  document.getElementById("BEACON").innerHTML = "Beacon er her!!! <br> BEACON1 <br>";
