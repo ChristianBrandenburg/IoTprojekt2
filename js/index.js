@@ -24,6 +24,7 @@ var inRange = 0;
 // Denne funktion køres efter on DeviceReady. Vi skal bruge denne funktion til
 // at scanne efter vores beacon. Skal optimeres så den scanner i et interval
 function refreshDeviceList(){
+  var inRange = 0;
   document.getElementById("BEACON").innerHTML = "Scan";
   document.getElementById("bleDeviceList").innerHTML = ''; // empties the list
   if (cordova.platformId === 'android') { // Android filtering is broken
@@ -94,7 +95,7 @@ function indTjek() {
     var options = "location = no,hidden = yes"
     var ref = cordova.InAppBrowser.open(url, target, options);
     ref.close();
-    inRange = 0;
+    document.getElementById("BEACON").innerHTML = "Afsendt";
   }
   else {
     document.getElementById("BEACON").innerHTML = "Beacon er uden for rækkevidde";
