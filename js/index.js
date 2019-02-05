@@ -52,6 +52,9 @@ function onDiscoverDevice(device){
     ref.close();
     document.getElementById("BEACON").innerHTML = "Afsendt";
 	  }
+  else {
+    document.getElementById("BEACON").innerHTML = "Uden for rækkevidde";
+  }
 }
 
 // Denne funktion forbinder appen automatisk med vores blufruit, der
@@ -91,7 +94,7 @@ function onError(reason)  {
 	alert("ERROR: " + reason); // real apps should use notification.alert
 }
 
-function indTjek() {
+/*function indTjek() {
   if (inRange = 1) {
     var url = "http://api.thingspeak.com/update?api_key=QS1B4C4WUR75QAWZ&field1=50";
     var target = '_blank';
@@ -104,3 +107,4 @@ function indTjek() {
     document.getElementById("BEACON").innerHTML = "Beacon er uden for rækkevidde";
   }
 }
+*/
