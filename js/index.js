@@ -25,7 +25,7 @@ var inRange;
 // at scanne efter vores beacon. Skal optimeres så den scanner i et interval
 function refreshDeviceList(){
   inRange = 0;
-  document.getElementById("BEACON").innerHTML = "Scan";
+  document.getElementById("BEACON").innerHTML = "Scan"+ inRange;
   document.getElementById("bleDeviceList").innerHTML = ''; // empties the list
   if (cordova.platformId === 'android') { // Android filtering is broken
     ble.scan([], 5, onDiscoverDevice, onError);
@@ -47,8 +47,8 @@ function onDiscoverDevice(device){
 	if (device.name == 'BEACON1') {
     inRange = 1;
 	  document.getElementById("BEACON").innerHTML = "Beacon er her!!! <br> BEACON1 <br>";
+    indTjek();
 	  }
-  indTjek();
 }
 
 // Denne funktion forbinder appen automatisk med vores blufruit, der
