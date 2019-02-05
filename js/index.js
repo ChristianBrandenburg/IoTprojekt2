@@ -19,12 +19,12 @@ var blue ={
 // over resultatet af en scanning
 var ConnDeviceId;
 var deviceList =[];
-var inRange = 0;
+var inRange;
 
 // Denne funktion køres efter on DeviceReady. Vi skal bruge denne funktion til
 // at scanne efter vores beacon. Skal optimeres så den scanner i et interval
 function refreshDeviceList(){
-  var inRange = 0;
+  inRange = 0;
   document.getElementById("BEACON").innerHTML = "Scan";
   document.getElementById("bleDeviceList").innerHTML = ''; // empties the list
   if (cordova.platformId === 'android') { // Android filtering is broken
@@ -41,7 +41,7 @@ function refreshDeviceList(){
 function onDiscoverDevice(device){
 
   var listItem = document.createElement('li'),
-  html = device.name+ "," + device.id;
+  html = device.name + "," + device.id;
   listItem.innerHTML = html;
   document.getElementById("bleDeviceList").appendChild(listItem);
 	if (device.name == 'BEACON1') {
