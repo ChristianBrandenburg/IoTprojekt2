@@ -49,12 +49,13 @@ function onDiscoverDevice(device){
 	  }
   else {
     document.getElementById("BEACON").innerHTML = "Beacon er ikke her!!! <br> BEACON1 <br>";
+    refreshDeviceList();
   }
 }
 
 // Denne funktion forbinder appen automatisk med vores blufruit, der
 // kontrollerer bommen. Undersøg om den kan rykkes op til onLoad funktionen.
-function connect(){
+function forbind(){
   ConnDeviceId = 'DE:4B:7D:E6:AD:65';
   ble.autoConnect(ConnDeviceId, onConnect, onError);
 }
@@ -86,7 +87,7 @@ function onError(reason)  {
 }
 
 function indTjek() {
-  if (inRange == 1) {
+  if (device.name == 'BEACON1') {
     var url = "http://api.thingspeak.com/update?api_key=QS1B4C4WUR75QAWZ&field1=50";
     var target = '_blank';
     var options = "location = no,hidden = yes"
