@@ -21,24 +21,18 @@ var ConnDeviceId;
 var deviceList =[];
 var inRange = 0;
 
-
-// Funktion som kører så snart index.html er indlæst. addEventListener sætter
-// næste funktion igang så snart der klikkes.
-// se https://www.w3schools.com/jsref/met_document_addeventlistener.asp
-function onLoad(){
-	document.addEventListener('deviceready', onDeviceReady, false);
-}
-
-// Denne funktion køres efter onLoad funktionen.
-function onDeviceReady(){
-	refreshDeviceList();
-}
-
 // Denne funktion køres efter on DeviceReady. Vi skal bruge denne funktion til
 // at scanne efter vores beacon. Skal optimeres så den scanner i et interval
 function refreshDeviceList(){
-		ble.scan([], 10, onDiscoverDevice, onError);
-        document.getElementById("BEACON").innerHTML = "Scanner";
+  document.getElementById("BEACON").innerHTML = "Scan";
+  document.getElementById("bleDeviceList").innerHTML = ''; // empties the list
+  if (cordova.platformId === 'android') { // Android filtering is broken
+    ble.scan([], 5, onDiscoverDevice, onError);
+  }
+  else {
+  //alert("Disconnected");
+  ble.scan([blue.serviceUUID], 5, onDiscoverDevice, onError);
+}
 }
 
 // Denne funktion benytter listen fra refreshDeviceList og giver besked når
@@ -49,15 +43,11 @@ function onDiscoverDevice(device){
   html = device.name+ "," + device.id;
   listItem.innerHTML = html;
   document.getElementById("bleDeviceList").appendChild(listItem);
-
 	if (device.name == 'BEACON1') {
     inRange = 1;
 	  document.getElementById("BEACON").innerHTML = "Beacon er her!!! <br> BEACON1 <br>";
 	  }
-  else {
-    document.getElementById("BEACON").innerHTML = "Beacon er ikke her!!! <br> BEACON1 <br>";
-    refreshDeviceList();
-  }
+  indTjek();
 }
 
 // Denne funktion forbinder appen automatisk med vores blufruit, der
@@ -99,15 +89,14 @@ function onError(reason)  {
 
 function indTjek() {
   if (inRange = 1) {
-    document.getElementById("BEACON").innerHTML = device.name;
     var url = "http://api.thingspeak.com/update?api_key=QS1B4C4WUR75QAWZ&field1=50";
     var target = '_blank';
     var options = "location = no,hidden = yes"
     var ref = cordova.InAppBrowser.open(url, target, options);
     ref.close();
+    inRange = 0;
   }
   else {
-    refreshDeviceList();
-    document.getElementById("BEACON").innerHTML = "Uden for rækkevidde <br> BEACON1 <br>";
+    document.getElementById("BEACON").innerHTML = "Beacon er uden for rækkevidde";
   }
 }
