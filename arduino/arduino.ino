@@ -175,7 +175,6 @@ void loop(void)
   // servo lukker bom, hvis afstanden er til det
   if (distance >= 20) {
     for (pos = 90; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
-      //  pos -= 1;
       myservo.write(pos = 0);              // tell servo to go to position in variable 'pos'
       delay(15);
     }
