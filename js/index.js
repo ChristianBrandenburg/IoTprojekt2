@@ -37,7 +37,7 @@ function scanCheckInd(){
 function sendCheckInd(device){
 
 	if (device.id == 'EF:1E:94:22:B3:E8') {
-    var url = "http://api.thingspeak.com/update?api_key=4IH5YM5BNORPHLI9&field1=1";
+    var url = "https://api.thingspeak.com/update?api_key=4IH5YM5BNORPHLI9&field1=1";
     var target = '_blank';
     var options = "location = no,hidden = yes"
     var ref = cordova.InAppBrowser.open(url, target, options);
@@ -61,7 +61,7 @@ function scanCheckUd(){
 // vore beacon er fundet. Skal sætte en timestamp funktion igang.
 function sendUdtjek(device){
 	if (device.id == 'EF:1E:94:22:B3:E8') {
-    var url = "http://api.thingspeak.com/update?api_key=4IH5YM5BNORPHLI9&field1=0";
+    var url = "https://api.thingspeak.com/update?api_key=4IH5YM5BNORPHLI9&field1=0";
     var target = '_blank';
     var options = "location = no,hidden = yes"
     var ref = cordova.InAppBrowser.open(url, target, options);
