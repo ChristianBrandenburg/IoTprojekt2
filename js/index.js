@@ -18,55 +18,67 @@ var blue ={
 // Variabler der bruges til at identificere basestationen og lave en liste
 // over resultatet af en scanning
 var ConnDeviceId;
-var deviceList =[];
-var inRange;
 
 // Denne funktion køres efter on DeviceReady. Vi skal bruge denne funktion til
 // at scanne efter vores beacon. Skal optimeres så den scanner i et interval
-function refreshDeviceList(){
-  inRange = 0;
-  document.getElementById("BEACON").innerHTML = "Scan"+ inRange;
-  document.getElementById("bleDeviceList").innerHTML = ''; // empties the list
+function scanCheckInd(){
+  document.getElementById("statusMsgDiv").innerHTML = "";
   if (cordova.platformId === 'android') { // Android filtering is broken
-    ble.scan([], 5, onDiscoverDevice, onError);
+    ble.scan([], 5, sendCheckInd, onError);
   }
   else {
   //alert("Disconnected");
-  ble.scan([blue.serviceUUID], 5, onDiscoverDevice, onError);
-}
+  ble.scan([blue.serviceUUID], 5, sendCheckInd, onError);
+  }
 }
 
 // Denne funktion benytter listen fra refreshDeviceList og giver besked når
 // vore beacon er fundet. Skal sætte en timestamp funktion igang.
-function onDiscoverDevice(device){
+function sendCheckInd(device){
 
-  var listItem = document.createElement('li'),
-  html = device.name + "," + device.id;
-  listItem.innerHTML = html;
-  document.getElementById("bleDeviceList").appendChild(listItem);
 	if (device.id == 'EF:1E:94:22:B3:E8') {
-    var url = "http://api.thingspeak.com/update?api_key=QS1B4C4WUR75QAWZ&field1=50";
+    var url = "http://api.thingspeak.com/update?api_key=QS1B4C4WUR75QAWZ&field1=1";
     var target = '_blank';
     var options = "location = no,hidden = yes"
     var ref = cordova.InAppBrowser.open(url, target, options);
     ref.close();
-    document.getElementById("BEACON").innerHTML = "Afsendt";
-	  }
-  else {
-    document.getElementById("BEACON").innerHTML = "Uden for rækkevidde";
+    document.getElementById("statusMsgDiv").innerHTML = "Check ind sendt";
   }
+}
+
+function scanCheckUd(){
+      document.getElementById("statusMsgDiv").innerHTML = "";
+  if (cordova.platformId === 'android') { // Android filtering is broken
+    ble.scan([], 5, sendUdtjek, onError);
+  }
+  else {
+  //alert("Disconnected");
+  ble.scan([blue.serviceUUID], 5, sendUdtjek, onError);
+  }
+}
+
+// Denne funktion benytter listen fra refreshDeviceList og giver besked når
+// vore beacon er fundet. Skal sætte en timestamp funktion igang.
+function sendUdtjek(device){
+	if (device.id == 'EF:1E:94:22:B3:E8') {
+    var url = "http://api.thingspeak.com/update?api_key=QS1B4C4WUR75QAWZ&field1=1";
+    var target = '_blank';
+    var options = "location = no,hidden = yes"
+    var ref = cordova.InAppBrowser.open(url, target, options);
+    ref.close();
+    document.getElementById("statusMsgDiv").innerHTML = "Check ud sendt";
+	  }
 }
 
 // Denne funktion forbinder appen automatisk med vores blufruit, der
 // kontrollerer bommen. Undersøg om den kan rykkes op til onLoad funktionen.
-function forbind(){
+function conn(){
   ConnDeviceId = 'DE:4B:7D:E6:AD:65';
   ble.autoConnect(ConnDeviceId, onConnect, onError);
-  document.getElementById("bleId").innerHTML = ConnDeviceId;
 }
 
 function onSend(){
-	document.getElementById("debugDiv").innerHTML = "Sent: " + messageInput.value + "<br/>";
+  document.getElementById("statusMsgDiv").innerHTML = "";
 }
 
  // Denne funktion giver besked hvis der er forbundet til bommen.
@@ -84,27 +96,11 @@ function onConnError(){
 // Denne funktion giver bommen besked om at den skal åbne
 function sendData() { // send data to Arduino
 	var data = stringToBytes('1');
-// https://github.com/don/cordova-plugin-ble-central#writewithoutresponse
 	ble.writeWithoutResponse(ConnDeviceId, blue.serviceUUID, blue.txCharacteristic, data, onSend, onError);
-  	document.getElementById("statusDiv").innerHTML = "Sender";
+  document.getElementById("statusMsgDiv").innerHTML = "Bom åbner";
 }
 
 // Denne funktion giver fejlbeskeder på skærmen.
 function onError(reason)  {
 	alert("ERROR: " + reason); // real apps should use notification.alert
 }
-
-/*function indTjek() {
-  if (inRange = 1) {
-    var url = "http://api.thingspeak.com/update?api_key=QS1B4C4WUR75QAWZ&field1=50";
-    var target = '_blank';
-    var options = "location = no,hidden = yes"
-    var ref = cordova.InAppBrowser.open(url, target, options);
-    ref.close();
-    document.getElementById("BEACON").innerHTML = "Afsendt";
-  }
-  else {
-    document.getElementById("BEACON").innerHTML = "Beacon er uden for rækkevidde";
-  }
-}
-*/

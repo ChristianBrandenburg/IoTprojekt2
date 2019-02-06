@@ -15,25 +15,16 @@
 <br>
 <h1>SesamApp</h1>
 <div id="statusDiv">Status: Disconnected</div>
-<div id="bleId">DeviceId:</div>
-<div id="debugDiv"></div>
+<div id="statusMsgDiv"> </div>
 <br><br><br>
-<button id="connect" onclick = "forbind()">Forbind</button>
+<button id="connect" onclick = "conn()">Bom åben</button>
 <br><br><br>
-<button id = "checkIndKnap" onclick="indTjek()"> Check ind </button>
-<br>
-<div id = "dato"></div>
-<br>
-<div id="BEACON"> </div>
-<button id = "checkUdKnap"  onclick="refreshDeviceList()" > Check ud </button>
+<button id = "checkIndKnap" onclick="scanCheckInd()"> Check ind </button>
 <br><br><br>
-<button id = "aabenBom"  onclick="sendData()" > Åben bom </button>
-<br><br><br>
-<div id="sendDiv"></div>
+<button id = "checkUdKnap"  onclick="scanCheckUd()" > Check ud </button>
 <br><br><br>
 <a href="oversigt.html" class="button">Tidsregistrering oversigt</a>
 <br><br>
 <a href="reglerogbrug.html" class="button">Regler og brug</a>
-<ul id="bleDeviceList"> </ul>
 </body>
 </html>
