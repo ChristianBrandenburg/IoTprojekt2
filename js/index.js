@@ -35,8 +35,8 @@ function sendCheckInd(device){
     var target = '_blank';
     var options = "location = no,hidden = yes"
     var ref = cordova.InAppBrowser.open(url, target, options);
-    ref.close();
     document.getElementById("statusMsgDiv").innerHTML = "Check ind sendt";
+    ref.close();
   }
 }
 
@@ -60,14 +60,11 @@ function sendUdtjek(device){
     var target = '_blank';
     var options = "location = no,hidden = yes"
     var ref = cordova.InAppBrowser.open(url, target, options);
-    ref.addEventListener(loadstop, close);
+    document.getElementById("statusMsgDiv").innerHTML = "Check ud sendt";
+    ref.close();
 	  }
 }
 
-function close(){
-  inAppBrowserRef.close();
-  document.getElementById("statusMsgDiv").innerHTML = "Check ud sendt";
-}
 
 // Denne funktion køres når man trykker på "Åben bom". Forbinder til bommens
 // bluetooth. Autoconnect er ikke nødvendigt, men vi har det for en sikkerheds
