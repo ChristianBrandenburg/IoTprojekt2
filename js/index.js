@@ -60,9 +60,13 @@ function sendUdtjek(device){
     var target = '_blank';
     var options = "location = no,hidden = yes"
     var ref = cordova.InAppBrowser.open(url, target, options);
-    ref.close();
-    document.getElementById("statusMsgDiv").innerHTML = "Check ud sendt";
+    ref.addEventListener(loadstop, close);
 	  }
+}
+
+function close(){
+  inAppBrowserRef.close();
+  document.getElementById("statusMsgDiv").innerHTML = "Check ud sendt";
 }
 
 // Denne funktion køres når man trykker på "Åben bom". Forbinder til bommens
