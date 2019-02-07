@@ -26,6 +26,8 @@ function scanCheckInd(){
   }
 }
 
+var inAppBrowserRef;
+
 // Denne funktion køres efter scanCheckInd. Laver et reqest, hvis det korrekte
 // device id er fundet
 function sendCheckInd(device){
@@ -34,9 +36,8 @@ function sendCheckInd(device){
     var url = "https://api.thingspeak.com/update?api_key=4IH5YM5BNORPHLI9&field1=1";
     var target = '_blank';
     var options = "location = no,hidden = yes"
-    var ref = cordova.InAppBrowser.open(url, target, options);
-    document.getElementById("statusMsgDiv").innerHTML = "Check ind sendt";
-    ref.close();
+    inAppBrowserRef = cordova.InAppBrowser.open(url, target, options);
+    inAppBrowserRef.addEventListener('loadstop', close);
   }
 }
 
@@ -58,13 +59,16 @@ function sendUdtjek(device){
 	if (device.id == 'EF:1E:94:22:B3:E8') {
     var url = "https://api.thingspeak.com/update?api_key=4IH5YM5BNORPHLI9&field1=0";
     var target = '_blank';
-    var options = "location = no,hidden = yes"
-    var ref = cordova.InAppBrowser.open(url, target, options);
-    document.getElementById("statusMsgDiv").innerHTML = "Check ud sendt";
-    ref.close();
+    var options = 'hidden = yes'
+    inAppBrowserRef = cordova.InAppBrowser.open(url, target, options);
+    inAppBrowserRef.addEventListener('loadstop', close);
 	  }
 }
 
+function close(){
+  document.getElementById("statusMsgDiv").innerHTML = "Check ind/ud sendt";
+  inAppBrowserRef.close();
+}
 
 // Denne funktion køres når man trykker på "Åben bom". Forbinder til bommens
 // bluetooth. Autoconnect er ikke nødvendigt, men vi har det for en sikkerheds
