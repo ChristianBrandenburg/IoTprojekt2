@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget
 	id="dk.kea.bluefruit-gruppeX"
-	version="0.0.26"
+	version="0.0.50"
 	xmlns="http://www.w3.org/ns/widgets"
 	xmlns:cdv="http://cordova.apache.org/ns/1.0">
 
-    <name>SesamApp</name>
+    <name>SesamAppOptimering</name>
     <description>
         Gruppe X app til IoT projekt 2.
     </description>

@@ -10,7 +10,7 @@ color: white;
 font: bold 20px Calibri;
 }
 p{
-color: white;	
+color: white;
 font: bold 20px Calibri;
 }
 
@@ -21,7 +21,7 @@ body {
   background-repeat:repeat;
 }
 #checkUdKnap{
-	font: bold 15px Calibri;  
+	font: bold 15px Calibri;
 	  background-color: #FFFFFFFF;
 	color: #333333;
   padding: 5px 30px 5px 30px;
@@ -32,7 +32,7 @@ body {
   border-radius: 50px ;
 }
 #checkIndKnap{
-	font: bold 15px Calibri;  
+	font: bold 15px Calibri;
 	  background-color: #FFFFFFFF;
 	color: #333333;
   padding: 5px 30px 5px 30px;
@@ -43,7 +43,7 @@ body {
   border-radius: 50px ;
 }
 .button {
-  font: bold 15px Calibri;  
+  font: bold 15px Calibri;
 	  background-color: #FFFFFFFF;
 	color: #333333;
   padding: 5px 30px 5px 30px;
@@ -56,21 +56,11 @@ body {
 #statusDiv
 {
 color: white;
-font: bold 20px Calibri; 
-}
-#debugDiv
-{
-color: white;
-font: bold 20px Calibri; 
-}
-#bleId
-{
-color: white;
-font: bold 20px Calibri; 
+font: bold 20px Calibri;
 }
 #connect
 {
-	font: bold 15px Calibri;  
+	font: bold 15px Calibri;
 	  background-color: #FFFFFFFF;
 	color: #333333;
   padding: 10px 30px 10px 30px;
@@ -80,9 +70,9 @@ font: bold 20px Calibri;
   border-left: 1px solid #CCCCCC;
   border-radius: 50px ;
 }
-#aabenBom
+#oversigt
 {
-	font: bold 15px Calibri;  
+	font: bold 15px Calibri;
 	  background-color: #FFFFFFFF;
 	color: #333333;
   padding: 10px 30px 10px 30px;
@@ -94,26 +84,26 @@ font: bold 20px Calibri;
 }
 #connect:hover
 {
-	
+
 	color:grey;
 	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-	
+
 }
-#aabenBom:hover
+#oversigt:hover
 {
-	
+
 	color:grey;
 	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-	
+
 }
 .button:hover
 {
-	
+
 	color:grey;
 	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-	
+
 }
-#aabenBom:active{
+#oversigt:active{
   background-color: black;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
