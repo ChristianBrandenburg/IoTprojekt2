@@ -76,7 +76,7 @@ function close(){
 // skyld. Kalder enten onConnect hvis der er forbindelse eller onConnError
 // hvis der ikke er
 function conn(){
-  var ConnDeviceId = 'DE:4B:7D:E6:AD:65';
+  ConnDeviceId = 'DE:4B:7D:E6:AD:65';
   ble.autoConnect(ConnDeviceId, onConnect, onError);
 }
 
@@ -95,7 +95,6 @@ function onConnError(){
 // Denne funktion giver bommen besked om at den skal åbne. Sender "1" til
 // til bommen. Når beskeden er sendt kalder den onSend, hvis fejl onError.
 function sendData() {
-  var ConnDeviceId = 'DE:4B:7D:E6:AD:65';
 	var data = stringToBytes('1');
 	ble.writeWithoutResponse(ConnDeviceId, blue.serviceUUID, blue.txCharacteristic, data, onSend, onError);
   document.getElementById("statusMsgDiv").innerHTML = "Bom åbner";
