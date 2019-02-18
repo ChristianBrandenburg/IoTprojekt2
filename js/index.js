@@ -27,7 +27,7 @@ function scanCheckInd(){
 }
 
 var inAppBrowserRef;
-var ConnDeviceId = 'DE:4B:7D:E6:AD:65';
+var ConnDeviceId;
 
 // Denne funktion køres efter scanCheckInd. Laver et reqest, hvis det korrekte
 // device id er fundet
@@ -76,6 +76,7 @@ function close(){
 // skyld. Kalder enten onConnect hvis der er forbindelse eller onConnError
 // hvis der ikke er
 function conn(){
+  var ConnDeviceId = 'DE:4B:7D:E6:AD:65';
   ble.autoConnect(ConnDeviceId, onConnect, onError);
 }
 
